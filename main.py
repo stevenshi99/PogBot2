@@ -10,7 +10,13 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 from discord.utils import find
 
-
+response_map = {
+  'hello' : 'Hello!',
+  'mald' : discord.File('maldM.gif'),
+  'pbjt' : discord.File('pbjt.gif'),
+  'borpa' : discord.File('borpa.gif'),
+  'help' : '!hello - I will say hello back to you <:kitty:717601209296617493>\n!pbjt - epic pbjt gif\n!mald - malding emote gif\n!help - display this list again\n!borpa - borpa'
+}
 
 @client.event
 async def on_guild_join(guild):
@@ -28,19 +34,19 @@ async def on_message(message):
         return
 
     if '!hello' in  message.content:
-        await message.channel.send('Hello!')
+        await message.channel.send(response_map['hello'])
 
     if '!mald' in message.content:
-        await message.channel.send(file=discord.File('maldM.gif'))
+        await message.channel.send(file=response_map['mald'])
 
     if '!pbjt' in message.content:
-        await message.channel.send(file=discord.File('pbjt.gif'))  
+        await message.channel.send(file=response_map['pbjt'])  
         
     if '!borpa' in message.content:
-        await message.channel.send(file=discord.File('borpa.gif'))      
+        await message.channel.send(file=response_map['borpa'])      
 
     if '!help' in message.content:
-        await message.channel.send('!hello - I will say hello back to you <:kitty:717601209296617493>\n!pbjt - epic pbjt gif\n!mald - malding emote gif\n!help - display this list again\n!borpa - borpa');
+        await message.channel.send(response_map['help']);
 
         
 keep_alive()
